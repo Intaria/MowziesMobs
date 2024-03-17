@@ -148,16 +148,6 @@ public class PlayerCapability {
             prevTime = time;
 
             Ability iceBreathAbility = AbilityHandler.INSTANCE.getAbility(player, AbilityHandler.ICE_BREATH_ABILITY);
-            if (iceBreathAbility != null && !iceBreathAbility.isUsing()) {
-                for (ItemStack stack : player.getInventory().items) {
-                    restoreIceCrystalStack(player, stack);
-                }
-                for (ItemStack stack : player.getInventory().offhand) {
-                    restoreIceCrystalStack(player, stack);
-                }
-            }
-
-            useIceCrystalStack(player);
 
             if (event.side == LogicalSide.CLIENT) {
                 if (Minecraft.getInstance().options.keyAttack.isDown() && !mouseLeftDown) {
@@ -249,33 +239,6 @@ public class PlayerCapability {
                 }
             }
             prevSneaking = player.isShiftKeyDown();
-        }
-
-        private void restoreIceCrystalStack(Player entity, ItemStack stack) {
-            if (stack.getItem() == ItemHandler.ICE_CRYSTAL) {
-                if (!ConfigHandler.COMMON.TOOLS_AND_ABILITIES.ICE_CRYSTAL.breakable.get()) {
-                    stack.setDamageValue(Math.max(stack.getDamageValue() - 1, 0));
-                }
-            }
-        }
-
-        private void useIceCrystalStack(Player player) {
-            ItemStack stack = player.getUseItem();
-            if (stack.getItem() == ItemHandler.ICE_CRYSTAL) {
-                Ability iceBreathAbility = AbilityHandler.INSTANCE.getAbility(player, AbilityHandler.ICE_BREATH_ABILITY);
-                if (iceBreathAbility != null && iceBreathAbility.isUsing()) {
-                    InteractionHand handIn = player.getUsedItemHand();
-                    if (stack.getDamageValue() + 5 < stack.getMaxDamage()) {
-                        stack.hurtAndBreak(5, player, p -> p.broadcastBreakEvent(handIn));
-                    }
-                    else {
-                        if (ConfigHandler.COMMON.TOOLS_AND_ABILITIES.ICE_CRYSTAL.breakable.get()) {
-                            stack.hurtAndBreak(5, player, p -> p.broadcastBreakEvent(handIn));
-                        }
-                        iceBreathAbility.end();
-                    }
-                }
-            }
         }
 
         public int getTick() {
