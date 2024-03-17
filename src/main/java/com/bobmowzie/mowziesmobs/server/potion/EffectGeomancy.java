@@ -33,7 +33,6 @@ public class EffectGeomancy extends MowzieEffect {
                 && blockState.getBlock() != Blocks.ENDER_CHEST
                 && blockState.getBlock() != Blocks.SLIME_BLOCK
                 && blockState.getBlock() != Blocks.HOPPER
-                && blockState.getBlock() != BlockHandler.THATCH.get()
                 && !blockState.hasBlockEntity();
     }
 

@@ -2,13 +2,9 @@ package com.bobmowzie.mowziesmobs.client;
 
 import com.bobmowzie.mowziesmobs.MowziesMobs;
 import com.bobmowzie.mowziesmobs.client.render.entity.FrozenRenderHandler;
-import com.bobmowzie.mowziesmobs.client.render.entity.layer.SolarFlareLayer;
-import com.bobmowzie.mowziesmobs.client.render.entity.layer.SunblockLayer;
 import com.bobmowzie.mowziesmobs.client.render.entity.player.GeckoPlayer;
-import com.bobmowzie.mowziesmobs.client.render.item.RenderSolVisageArmor;
 import com.bobmowzie.mowziesmobs.client.render.item.RenderUmvuthanaMaskArmor;
 import com.bobmowzie.mowziesmobs.server.entity.MowzieEntity;
-import com.bobmowzie.mowziesmobs.server.item.ItemSolVisage;
 import com.bobmowzie.mowziesmobs.server.item.ItemUmvuthanaMask;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
@@ -40,11 +36,9 @@ public class ClientLayerRegistry {
         }));
         for (String skinType : event.getSkins()){
             event.getSkin(skinType).addLayer(new FrozenRenderHandler.LayerFrozen(event.getSkin(skinType)));
-            event.getSkin(skinType).addLayer(new SunblockLayer(event.getSkin(skinType)));
         }
 
         GeoArmorRenderer.registerArmorRenderer(ItemUmvuthanaMask.class, () -> new RenderUmvuthanaMaskArmor());
-        GeoArmorRenderer.registerArmorRenderer(ItemSolVisage.class, () -> new RenderSolVisageArmor());
 
         GeckoPlayer.GeckoPlayerThirdPerson.initRenderer();
     }
@@ -61,7 +55,6 @@ public class ClientLayerRegistry {
             }
             if(renderer != null){
                 renderer.addLayer(new FrozenRenderHandler.LayerFrozen(renderer));
-                renderer.addLayer(new SunblockLayer(renderer));
             }
         }
     }

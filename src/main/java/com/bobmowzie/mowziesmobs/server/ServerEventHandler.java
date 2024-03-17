@@ -18,26 +18,13 @@ import com.bobmowzie.mowziesmobs.server.capability.FrozenCapability;
 import com.bobmowzie.mowziesmobs.server.capability.LivingCapability;
 import com.bobmowzie.mowziesmobs.server.capability.PlayerCapability;
 import com.bobmowzie.mowziesmobs.server.config.ConfigHandler;
-import com.bobmowzie.mowziesmobs.server.entity.LeaderSunstrikeImmune;
 import com.bobmowzie.mowziesmobs.server.entity.MowzieEntity;
 import com.bobmowzie.mowziesmobs.server.entity.MowzieGeckoEntity;
-import com.bobmowzie.mowziesmobs.server.entity.foliaath.EntityFoliaath;
 import com.bobmowzie.mowziesmobs.server.entity.frostmaw.EntityFrostmaw;
 import com.bobmowzie.mowziesmobs.server.entity.naga.EntityNaga;
-import com.bobmowzie.mowziesmobs.server.entity.sculptor.EntitySculptor;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.EntityUmvuthana;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.EntityUmvuthanaCrane;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.EntityUmvuthanaFollowerToPlayer;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.EntityUmvuthanaMinion;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.EntityUmvuthi;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.MaskType;
-import com.bobmowzie.mowziesmobs.server.entity.wroughtnaut.EntityWroughtnaut;
-import com.bobmowzie.mowziesmobs.server.item.ItemHandler;
 import com.bobmowzie.mowziesmobs.server.item.ItemNagaFangDagger;
-import com.bobmowzie.mowziesmobs.server.item.ItemSpear;
 import com.bobmowzie.mowziesmobs.server.item.ItemUmvuthanaMask;
 import com.bobmowzie.mowziesmobs.server.message.MessageFreezeEffect;
-import com.bobmowzie.mowziesmobs.server.message.MessagePlayerAttackMob;
 import com.bobmowzie.mowziesmobs.server.message.MessageSunblockEffect;
 import com.bobmowzie.mowziesmobs.server.potion.EffectHandler;
 import com.bobmowzie.mowziesmobs.server.power.Power;
@@ -46,7 +33,6 @@ import com.bobmowzie.mowziesmobs.server.sound.MMSounds;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -54,26 +40,17 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Parrot;
-import net.minecraft.world.entity.decoration.ItemFrame;
-import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ChestBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
@@ -92,7 +69,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.network.PacketDistributor;
 
 public final class ServerEventHandler {
@@ -113,29 +89,12 @@ public final class ServerEventHandler {
             return;
         }
         Entity entity = event.getEntity();
-        if (entity instanceof Zombie && !(entity instanceof ZombifiedPiglin)) {
-            ((PathfinderMob) entity).targetSelector.addGoal(2, new NearestAttackableTargetGoal<>((PathfinderMob) entity, EntityFoliaath.class, 0, true, false, null));
-            ((PathfinderMob) entity).targetSelector.addGoal(3, new NearestAttackableTargetGoal<>((PathfinderMob) entity, EntityUmvuthana.class, 0, true, false, null));
-            ((PathfinderMob) entity).targetSelector.addGoal(2, new NearestAttackableTargetGoal<>((PathfinderMob) entity, EntityUmvuthi.class, 0, true, false, null));
-        }
-        if (entity instanceof AbstractSkeleton) {
-            ((PathfinderMob) entity).targetSelector.addGoal(3, new NearestAttackableTargetGoal<>((PathfinderMob) entity, EntityUmvuthana.class, 0, true, false, null));
-            ((PathfinderMob) entity).targetSelector.addGoal(2, new NearestAttackableTargetGoal<>((PathfinderMob) entity, EntityUmvuthi.class, 0, true, false, null));
-        }
-
-        if (entity instanceof Parrot) {
-            ((PathfinderMob) entity).goalSelector.addGoal(3, new AvoidEntityGoal<>((PathfinderMob) entity, EntityFoliaath.class, 6.0F, 1.0D, 1.2D));
-        }
+        
         if (entity instanceof Animal) {
-            ((PathfinderMob) entity).goalSelector.addGoal(3, new AvoidEntityIfNotTamedGoal<>((PathfinderMob) entity, EntityFoliaath.class, 6.0F, 1.0D, 1.2D));
-            ((PathfinderMob) entity).goalSelector.addGoal(3, new AvoidEntityIfNotTamedGoal<>((PathfinderMob) entity, EntityUmvuthana.class, 6.0F, 1.0D, 1.2D));
-            ((PathfinderMob) entity).goalSelector.addGoal(3, new AvoidEntityIfNotTamedGoal<>((PathfinderMob) entity, EntityUmvuthi.class, 6.0F, 1.0D, 1.2D));
             ((PathfinderMob) entity).goalSelector.addGoal(3, new AvoidEntityIfNotTamedGoal<>((PathfinderMob) entity, EntityNaga.class, 10.0F, 1.0D, 1.2D));
             ((PathfinderMob) entity).goalSelector.addGoal(3, new AvoidEntityIfNotTamedGoal<>((PathfinderMob) entity, EntityFrostmaw.class, 10.0F, 1.0D, 1.2D));
         }
         if (entity instanceof AbstractVillager) {
-            ((PathfinderMob) entity).goalSelector.addGoal(3, new AvoidEntityGoal<>((PathfinderMob) entity, EntityUmvuthana.class, 6.0F, 1.0D, 1.2D));
-            ((PathfinderMob) entity).goalSelector.addGoal(3, new AvoidEntityGoal<>((PathfinderMob) entity, EntityUmvuthi.class, 6.0F, 1.0D, 1.2D));
             ((PathfinderMob) entity).goalSelector.addGoal(3, new AvoidEntityGoal<>((PathfinderMob) entity, EntityNaga.class, 10.0F, 1.0D, 1.2D));
             ((PathfinderMob) entity).goalSelector.addGoal(3, new AvoidEntityGoal<>((PathfinderMob) entity, EntityFrostmaw.class, 10.0F, 1.0D, 1.2D));
         }
@@ -155,14 +114,6 @@ public final class ServerEventHandler {
                 if (headItemStack instanceof ItemUmvuthanaMask) {
                     ItemUmvuthanaMask mask = (ItemUmvuthanaMask) headItemStack;
                     EffectHandler.addOrCombineEffect(entity, mask.getPotion(), 50, 0, true, false);
-                }
-            }
-
-            if (entity instanceof Mob && !(entity instanceof EntityUmvuthanaCrane)) {
-                Mob mob = (Mob) entity;
-                if (mob.getTarget() instanceof EntityUmvuthi && mob.getTarget().hasEffect(EffectHandler.SUNBLOCK.get())) {
-                    EntityUmvuthanaCrane sunblocker = mob.level.getNearestEntity(EntityUmvuthanaCrane.class, TargetingConditions.DEFAULT, mob, mob.getX(), mob.getY() + mob.getEyeHeight(), mob.getZ(), mob.getBoundingBox().inflate(40.0D, 15.0D, 40.0D));
-                    mob.setTarget(sunblocker);
                 }
             }
 
@@ -330,21 +281,6 @@ public final class ServerEventHandler {
                 event.setCanceled(true);
                 return;
             }
-
-            if (entity instanceof Player) {
-                cheatSculptor((Player) entity);
-
-                BlockState block = event.getPlacedBlock();
-                if (
-                        block.getBlock() == Blocks.FIRE ||
-                        block.getBlock() == Blocks.TNT ||
-                        block.getBlock() == Blocks.RESPAWN_ANCHOR ||
-                        block.getBlock() == Blocks.DISPENSER ||
-                        block.getBlock() == Blocks.CACTUS
-                ) {
-                    aggroUmvuthana((Player) entity);
-                }
-            }
         }
     }
 
@@ -362,14 +298,6 @@ public final class ServerEventHandler {
                 event.setCanceled(true);
                 return;
             }
-
-            if (event.getEmptyBucket().getItem() == Items.LAVA_BUCKET) {
-                aggroUmvuthana(event.getEntity());
-            }
-
-            if (event.getEmptyBucket().getItem() == Items.WATER_BUCKET) {
-                cheatSculptor(event.getEntity());
-            }
         }
     }
 
@@ -384,25 +312,6 @@ public final class ServerEventHandler {
         if (abilityCapability != null && event.isCancelable() && abilityCapability.blockBreakingBuildingPrevented()) {
             event.setCanceled(true);
             return;
-        }
-
-        cheatSculptor(event.getPlayer());
-
-        BlockState block = event.getState();
-        if (block.getBlock() == Blocks.GOLD_BLOCK ||
-            block.getMaterial() == Material.WOOD ||
-            block.is(BlockTags.LEAVES) ||
-            block.getBlock() == Blocks.LIGHT_GRAY_TERRACOTTA ||
-            block.getBlock() == Blocks.RED_TERRACOTTA ||
-            block.getBlock() == Blocks.SMOOTH_RED_SANDSTONE_SLAB ||
-            block.getBlock() == Blocks.SMOOTH_RED_SANDSTONE ||
-            block.getBlock() == Blocks.SMOOTH_RED_SANDSTONE_STAIRS ||
-            block.getBlock() == Blocks.CAMPFIRE ||
-            block.getBlock() == Blocks.IRON_BARS ||
-            block.getBlock() == Blocks.SKELETON_SKULL ||
-            block.getBlock() == Blocks.TORCH
-        ) {
-            aggroUmvuthana(event.getPlayer());
         }
     }
 
@@ -432,15 +341,6 @@ public final class ServerEventHandler {
         Player player = event.getEntity();
         PlayerCapability.IPlayerCapability playerCapability = CapabilityHandler.getCapability(player, CapabilityHandler.PLAYER_CAPABILITY);
         if (playerCapability != null) {
-
-            if (event.getLevel().isClientSide && player.getInventory().getSelected().isEmpty() && player.hasEffect(EffectHandler.SUNS_BLESSING.get())) {
-                if (player.isShiftKeyDown()) {
-                    AbilityHandler.INSTANCE.sendPlayerTryAbilityMessage(event.getEntity(), AbilityHandler.SOLAR_BEAM_ABILITY);
-                } else {
-                    AbilityHandler.INSTANCE.sendPlayerTryAbilityMessage(event.getEntity(), AbilityHandler.SUNSTRIKE_ABILITY);
-                }
-            }
-
             Power[] powers = playerCapability.getPowers();
             for (Power power : powers) {
                 power.onRightClickEmpty(event);
@@ -484,28 +384,9 @@ public final class ServerEventHandler {
         }
 
         Player player = event.getEntity();
-        if (player.level.getBlockState(event.getPos()).getBlock() instanceof ChestBlock) {
-            aggroUmvuthana(player);
-        }
 
         PlayerCapability.IPlayerCapability playerCapability = CapabilityHandler.getCapability(player, CapabilityHandler.PLAYER_CAPABILITY);
         if (playerCapability != null) {
-
-            ItemStack item = event.getItemStack();
-            if (
-                    item.getItem() == Items.FLINT_AND_STEEL ||
-                    item.getItem() == Items.TNT_MINECART
-            ) {
-                aggroUmvuthana(player);
-            }
-
-            if (event.getSide() == LogicalSide.CLIENT && player.getInventory().getSelected().isEmpty() && player.hasEffect(EffectHandler.SUNS_BLESSING.get())) {
-                if (player.isShiftKeyDown()) {
-                    AbilityHandler.INSTANCE.sendPlayerTryAbilityMessage(event.getEntity(), AbilityHandler.SOLAR_BEAM_ABILITY);
-                } else {
-                    AbilityHandler.INSTANCE.sendPlayerTryAbilityMessage(event.getEntity(), AbilityHandler.SUNSTRIKE_ABILITY);
-                }
-            }
             if (player.level.getBlockState(event.getPos()).getMenuProvider(player.level, event.getPos()) != null) {
                 player.resetAttackStrengthTicker();
                 return;
@@ -522,12 +403,6 @@ public final class ServerEventHandler {
         double range = 6.5;
         Player player = event.getEntity();
         PlayerCapability.IPlayerCapability playerCapability = CapabilityHandler.getCapability(player, CapabilityHandler.PLAYER_CAPABILITY);
-        if (player.getMainHandItem() != null && player.getMainHandItem().getItem() == ItemHandler.SPEAR) {
-            LivingEntity entityHit = ItemSpear.raytraceEntities(player.getCommandSenderWorld(), player, range);
-            if (entityHit != null) {
-                MowziesMobs.NETWORK.sendToServer(new MessagePlayerAttackMob(entityHit));
-            }
-        }
         if (playerCapability != null) {
             Power[] powers = playerCapability.getPowers();
             for (Power power : powers) {
@@ -637,27 +512,7 @@ public final class ServerEventHandler {
                     power.onLeftClickEntity(event);
                 }
 
-                if (event.getTarget() instanceof ItemFrame) {
-                    ItemFrame itemFrame = (ItemFrame) event.getTarget();
-                    if (itemFrame.getItem().getItem() instanceof ItemUmvuthanaMask) {
-                        aggroUmvuthana(event.getEntity());
-                    }
-                }
-                if (event.getTarget() instanceof LeaderSunstrikeImmune) {
-                    aggroUmvuthana(event.getEntity());
-                }
-
                 if (!(event.getTarget() instanceof LivingEntity)) return;
-                if (event.getTarget() instanceof EntityUmvuthanaFollowerToPlayer) return;
-                if (!event.getEntity().level.isClientSide()) {
-                    for (int i = 0; i < playerCapability.getPackSize(); i++) {
-                        EntityUmvuthanaFollowerToPlayer barakoa = playerCapability.getTribePack().get(i);
-                        LivingEntity living = (LivingEntity) event.getTarget();
-                        if (barakoa.getMaskType() != MaskType.FAITH) {
-                            if (!living.isInvulnerable()) barakoa.setTarget(living);
-                        }
-                    }
-                }
             }
         }
     }
@@ -716,12 +571,6 @@ public final class ServerEventHandler {
                     }
                 }
             }
-            else if (weapon.getItem() instanceof ItemSpear) {
-                if (target instanceof Animal && target.getMaxHealth() <= 30 && attacker.level.getRandom().nextFloat() <= 0.334) {
-                    event.setResult(Event.Result.ALLOW);
-                    event.setDamageModifier(400);
-                }
-            }
         }
     }
 
@@ -739,7 +588,7 @@ public final class ServerEventHandler {
 
     @SubscribeEvent
     public void onRideEntity(EntityMountEvent event) {
-        if (event.getEntityMounting() instanceof EntityUmvuthi || event.getEntityMounting() instanceof EntityFrostmaw || event.getEntityMounting() instanceof EntityWroughtnaut)
+        if (event.getEntityMounting() instanceof EntityFrostmaw)
             event.setCanceled(true);
     }
 
@@ -750,32 +599,6 @@ public final class ServerEventHandler {
             if (mob.resetHealthOnPlayerRespawn()) {
                 mob.setHealth(mob.getMaxHealth());
             }
-        }
-    }
-
-    private void aggroUmvuthana(Player player) {
-        List<EntityUmvuthi> barakos = getEntitiesNearby(player, EntityUmvuthi.class, 50);
-        for (EntityUmvuthi barako : barakos) {
-            if (barako.getTarget() == null || !(barako.getTarget() instanceof Player)) {
-                if (!player.isCreative() && !player.isSpectator() && player.blockPosition().distSqr(barako.getRestrictCenter()) < 900) {
-                    if (barako.canAttack(player)) barako.setMisbehavedPlayerId(player.getUUID());
-                }
-            }
-        }
-        List<EntityUmvuthanaMinion> barakoas = getEntitiesNearby(player, EntityUmvuthanaMinion.class, 50);
-        for (EntityUmvuthanaMinion barakoa : barakoas) {
-            if (barakoa.getTarget() == null || !(barakoa.getTarget() instanceof Player)) {
-                if (player.blockPosition().distSqr(barakoa.getRestrictCenter()) < 900) {
-                    if (barakoa.canAttack(player)) barakoa.setMisbehavedPlayerId(player.getUUID());
-                }
-            }
-        }
-    }
-
-    private void cheatSculptor(Player player) {
-        List<EntitySculptor> sculptors = player.level.getEntitiesOfClass(EntitySculptor.class, player.getBoundingBox().inflate(EntitySculptor.TEST_RADIUS + 3, EntitySculptor.TEST_HEIGHT, EntitySculptor.TEST_RADIUS + 3), EntitySculptor::isTesting);
-        for (EntitySculptor sculptor : sculptors) {
-            sculptor.playerCheated();
         }
     }
 }

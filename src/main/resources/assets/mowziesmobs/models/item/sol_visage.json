@@ -1,6 +1,0 @@
-{
-	"parent": "mowziesmobs:item/umvuthana_mask",
-	"textures": {
-		"layer0": "mowziesmobs:item/sol_visage"
-	}
-}

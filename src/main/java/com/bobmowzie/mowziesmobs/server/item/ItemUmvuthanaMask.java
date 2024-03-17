@@ -11,9 +11,6 @@ import com.bobmowzie.mowziesmobs.server.capability.CapabilityHandler;
 import com.bobmowzie.mowziesmobs.server.capability.PlayerCapability;
 import com.bobmowzie.mowziesmobs.server.config.ConfigHandler;
 import com.bobmowzie.mowziesmobs.server.entity.EntityHandler;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.EntityUmvuthana;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.EntityUmvuthanaCraneToPlayer;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.EntityUmvuthanaFollowerToPlayer;
 import com.bobmowzie.mowziesmobs.server.entity.umvuthana.MaskType;
 import com.bobmowzie.mowziesmobs.server.sound.MMSounds;
 
@@ -73,56 +70,7 @@ public class ItemUmvuthanaMask extends MowzieArmorItem implements UmvuthanaMask,
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
-        ItemStack headStack = player.getInventory().armor.get(3);
-        if (headStack.getItem() instanceof ItemSolVisage) {
-            if (ConfigHandler.COMMON.TOOLS_AND_ABILITIES.SOL_VISAGE.breakable.get() && !player.isCreative()) headStack.hurtAndBreak(2, player, p -> p.broadcastBreakEvent(hand));
-            boolean didSpawn = spawnUmvuthana(type, stack, player,(float)stack.getDamageValue() / (float)stack.getMaxDamage());
-            if (didSpawn) {
-                if (!player.isCreative()) stack.shrink(1);
-                return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);
-            }
-        }
         return super.use(world, player, hand);
-    }
-
-    private boolean spawnUmvuthana(MaskType mask, ItemStack stack, Player player, float durability) {
-        PlayerCapability.IPlayerCapability playerCapability = CapabilityHandler.getCapability(player, CapabilityHandler.PLAYER_CAPABILITY);
-        if (playerCapability != null && playerCapability.getPackSize() < 10) {
-            player.playSound(MMSounds.ENTITY_UMVUTHI_BELLY.get(), 1.5f, 1);
-            player.playSound(MMSounds.ENTITY_UMVUTHANA_BLOWDART.get(), 1.5f, 0.5f);
-            double angle = player.getYHeadRot();
-            if (angle < 0) {
-                angle = angle + 360;
-            }
-            EntityUmvuthanaFollowerToPlayer umvuthana;
-            if (mask == MaskType.FAITH) umvuthana = new EntityUmvuthanaCraneToPlayer(EntityHandler.UMVUTHANA_CRANE_TO_PLAYER.get(), player.level, player);
-            else umvuthana = new EntityUmvuthanaFollowerToPlayer(EntityHandler.UMVUTHANA_FOLLOWER_TO_PLAYER.get(), player.level, player);
-//            property.addPackMember(umvuthana);
-            if (!player.level.isClientSide) {
-                if (mask != MaskType.FAITH) {
-                    int weapon;
-                    if (mask != MaskType.FURY) weapon = umvuthana.randomizeWeapon();
-                    else weapon = 0;
-                    umvuthana.setWeapon(weapon);
-                }
-                umvuthana.absMoveTo(player.getX() + 1 * Math.sin(-angle * (Math.PI / 180)), player.getY() + 1.5, player.getZ() + 1 * Math.cos(-angle * (Math.PI / 180)), (float) angle, 0);
-                umvuthana.setActive(false);
-                umvuthana.active = false;
-                player.level.addFreshEntity(umvuthana);
-                double vx = 0.5 * Math.sin(-angle * Math.PI / 180);
-                double vy = 0.5;
-                double vz = 0.5 * Math.cos(-angle * Math.PI / 180);
-                umvuthana.setDeltaMovement(vx, vy, vz);
-                umvuthana.setHealth((1.0f - durability) * umvuthana.getMaxHealth());
-                umvuthana.setMask(mask);
-                umvuthana.setStoredMask(stack.copy());
-                if (stack.hasCustomHoverName())
-                    umvuthana.setCustomName(stack.getHoverName());
-            }
-            return true;
-        }
-        return false;
     }
 
     @Override
@@ -170,13 +118,7 @@ public class ItemUmvuthanaMask extends MowzieArmorItem implements UmvuthanaMask,
     }
 
     public <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        List<LivingEntity> livingEntities = event.getExtraDataOfType(LivingEntity.class);
-        if (livingEntities.size() > 0 && livingEntities.get(0) instanceof EntityUmvuthana) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("umvuthana", ILoopType.EDefaultLoopTypes.LOOP));
-        }
-        else {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("player", ILoopType.EDefaultLoopTypes.LOOP));
-        }
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("player", ILoopType.EDefaultLoopTypes.LOOP));
         return PlayState.CONTINUE;
     }
 

@@ -769,7 +769,7 @@ public class EntityFrostmaw extends MowzieLLibraryEntity implements Enemy {
         if (source.isFire()) damage *= 1.25;
 
         if (source.getDirectEntity() instanceof AbstractArrow) {
-            playSound(MMSounds.ENTITY_WROUGHT_UNDAMAGED.get(), 0.4F, 2);
+            //playSound(MMSounds.ENTITY_WROUGHT_UNDAMAGED.get(), 0.4F, 2);
             Entity entity = source.getEntity();
             if (entity != null && entity instanceof LivingEntity && (!(entity instanceof Player) || !((Player)entity).isCreative()) && getTarget() == null && !(entity instanceof EntityFrostmaw)) setTarget((LivingEntity) entity);
             if (!getActive()) {

@@ -179,9 +179,6 @@ public class EntityIceBreath extends EntityMagicEffect {
                     boolean inRange = blockHitDistance <= RANGE;
                     boolean yawCheck = (blockRelativeYaw <= ARC / 2f && blockRelativeYaw >= -ARC / 2f) || (blockRelativeYaw >= 360 - ARC / 2f || blockRelativeYaw <= -360 + ARC / 2f);
                     boolean pitchCheck = (blockRelativePitch <= ARC / 2f && blockRelativePitch >= -ARC / 2f) || (blockRelativePitch >= 360 - ARC / 2f || blockRelativePitch <= -360 + ARC / 2f);
-                    if (inRange && yawCheck && pitchCheck) {
-                        EntityBlockSwapper.swapBlock(level, pos, Blocks.ICE.defaultBlockState(), 140, false, false);
-                    }
                 }
             }
         }

@@ -117,21 +117,7 @@ public enum ClientEventHandler {
     @SubscribeEvent
     public void onRenderTick(TickEvent.RenderTickEvent event) {
         Player player = Minecraft.getInstance().player;
-//        if (player != null) {
-//            PlayerCapability.IPlayerCapability playerCapability = CapabilityHandler.getCapability(player, CapabilityHandler.PLAYER_CAPABILITY);
-//            if (playerCapability != null && playerCapability.getGeomancy().canUse(player) && playerCapability.getGeomancy().isSpawningBoulder() && playerCapability.getGeomancy().getSpawnBoulderCharge() > 2) {
-//                Vector3d lookPos = playerCapability.getGeomancy().getLookPos();
-//                Vector3d playerEyes = player.getEyePosition(Minecraft.getInstance().getRenderPartialTicks());
-//                Vector3d vec = playerEyes.subtract(lookPos).normalize();
-//                float yaw = (float) Math.atan2(vec.z, vec.x);
-//                float pitch = (float) Math.asin(vec.y);
-//                player.rotationYaw = (float) (yaw * 180f/Math.PI + 90);
-//                player.rotationPitch = (float) (pitch * 180f/Math.PI);
-//                player.rotationYawHead = player.rotationYaw;
-//                player.prevRotationYaw = player.rotationYaw;
-//                player.prevRotationPitch = player.rotationPitch;
-//                player.prevRotationYawHead = player.rotationYawHead;
-//            }
+
         FrozenCapability.IFrozenCapability frozenCapability = CapabilityHandler.getCapability(player, CapabilityHandler.FROZEN_CAPABILITY);
         if (frozenCapability != null && frozenCapability.getFrozen() && frozenCapability.getPrevFrozen()) {
             player.setYRot(frozenCapability.getFrozenYaw());
@@ -241,19 +227,6 @@ public enum ClientEventHandler {
             if (geckoPlayer != null) geckoPlayer.tick();
             if (player == Minecraft.getInstance().player) GeckoFirstPersonRenderer.GECKO_PLAYER_FIRST_PERSON.tick();
         }
-//        if(player.getInventory().getArmor(3).is(ItemHandler.SOL_VISAGE.asItem())){
-//            int tick = player.tickCount;
-//            double orbitSpeed = 50;
-//            double orbitSize = 0.6;
-//            double xOffset = (Math.sin(tick * orbitSpeed) * orbitSize);
-//            double zOffset= (Math.cos(tick * orbitSpeed) * orbitSize);
-//            Vec3 particleVec = Vec3.ZERO.add(xOffset, 2.2f, zOffset).yRot((float)Math.toRadians(-player.getYHeadRot())).xRot((float) Math.toRadians(0f)).add(player.position());
-//            Vec3 particleVec2 = Vec3.ZERO.add(-xOffset, 2.2f, -zOffset).yRot((float)Math.toRadians(-player.getYHeadRot())).xRot((float) Math.toRadians(0f)).add(player.position());
-//
-//            player.level.addParticle(ParticleTypes.SMALL_FLAME, particleVec.x, particleVec.y, particleVec.z, 0d, 0d, 0d);
-//            player.level.addParticle(ParticleTypes.SMALL_FLAME, particleVec2.x, particleVec2.y, particleVec2.z, 0d, 0d, 0d);
-//
-//        }
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

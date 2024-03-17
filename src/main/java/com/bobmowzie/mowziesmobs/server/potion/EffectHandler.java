@@ -15,7 +15,6 @@ public final class EffectHandler {
 
 	public static final DeferredRegister<MobEffect> REG = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, MowziesMobs.MODID);
 	
-    public static final RegistryObject<EffectSunsBlessing> SUNS_BLESSING = REG.register("suns_blessing", () -> new EffectSunsBlessing());
     public static final RegistryObject<EffectGeomancy> GEOMANCY = REG.register("geomancy", () -> new EffectGeomancy());
     public static final RegistryObject<EffectFrozen> FROZEN = REG.register("frozen", () -> new EffectFrozen());
     public static final RegistryObject<EffectPoisonResist> POISON_RESIST = REG.register("poison_resist", () -> new EffectPoisonResist());

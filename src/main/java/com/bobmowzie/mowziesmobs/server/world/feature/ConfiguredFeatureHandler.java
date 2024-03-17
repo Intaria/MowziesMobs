@@ -9,8 +9,6 @@ import com.bobmowzie.mowziesmobs.server.config.ConfigHandler;
 import com.bobmowzie.mowziesmobs.server.tag.TagHandler;
 import com.bobmowzie.mowziesmobs.server.world.BiomeChecker;
 import com.bobmowzie.mowziesmobs.server.world.feature.structure.FrostmawStructure;
-import com.bobmowzie.mowziesmobs.server.world.feature.structure.UmvuthanaGroveStructure;
-import com.bobmowzie.mowziesmobs.server.world.feature.structure.WroughtnautChamberStructure;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
@@ -31,25 +29,12 @@ import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 
 public class ConfiguredFeatureHandler {
-
-    public static Holder<Structure> CONFIGURED_WROUGHT_CHAMBER;
-    public static Holder<Structure> CONFIGURED_UMVUTHANA_GROVE;
     public static Holder<Structure> CONFIGURED_FROSTMAW;
-    public static Holder<Structure> CONFIGURED_MONASTERY;
-
-    public static Holder<StructureSet> WROUGHT_CHAMBERS;
-    public static Holder<StructureSet> UMVUTHANA_GROVES;
     public static Holder<StructureSet> FROSTMAWS;
     public static Holder<StructureSet> MONASTERIES;
 
-    public static BiomeChecker FERROUS_WROUGHTNAUT_BIOME_CHECKER;
-    public static final Set<Holder<Biome>> FERROUS_WROUGHTNAUT_BIOMES = new HashSet<>();
-    public static BiomeChecker UMVUTHI_BIOME_CHECKER;
-    public static final Set<Holder<Biome>> UMVUTHI_BIOMES = new HashSet<>();
     public static BiomeChecker FROSTMAW_BIOME_CHECKER;
     public static final Set<Holder<Biome>> FROSTMAW_BIOMES = new HashSet<>();
-    public static BiomeChecker SCULPTOR_BIOME_CHECKER;
-    public static final Set<Holder<Biome>> SCULPTOR_BIOMES = new HashSet<>();
 
     private static ResourceKey<Structure> createStructureKey(String name) {
         return ResourceKey.create(Registry.STRUCTURE_REGISTRY, new ResourceLocation(MowziesMobs.MODID, name));
@@ -72,15 +57,9 @@ public class ConfiguredFeatureHandler {
     }
 
     public static void registerConfiguredFeatures() {
-    	CONFIGURED_WROUGHT_CHAMBER = register(createStructureKey("wrought_chamber"), new WroughtnautChamberStructure(structure(TagHandler.HAS_MOWZIE_STRUCTURE, TerrainAdjustment.NONE)));
-        CONFIGURED_UMVUTHANA_GROVE = register(createStructureKey("umvuthana_grove"), new UmvuthanaGroveStructure(structure(TagHandler.HAS_MOWZIE_STRUCTURE, TerrainAdjustment.NONE)));
-        CONFIGURED_FROSTMAW = register(createStructureKey("frostmaw_spawn"), new FrostmawStructure(structure(TagHandler.HAS_MOWZIE_STRUCTURE, TerrainAdjustment.BEARD_THIN)));
-//        CONFIGURED_MONASTERY = register(createFeatureKey("monastery"), FeatureHandler.MONASTERY.get().configured(new JigsawConfiguration(PlainVillagePools.START, 0), TagHandler.HAS_MOWZIE_STRUCTURE));
+    	CONFIGURED_FROSTMAW = register(createStructureKey("frostmaw_spawn"), new FrostmawStructure(structure(TagHandler.HAS_MOWZIE_STRUCTURE, TerrainAdjustment.BEARD_THIN)));
 
-        WROUGHT_CHAMBERS = register(createSetKey("wrought_chambers"), CONFIGURED_WROUGHT_CHAMBER, new RandomSpreadStructurePlacement(32, 8, RandomSpreadType.TRIANGULAR, 23217347));
-        UMVUTHANA_GROVES = register(createSetKey("umvuthana_groves"), CONFIGURED_UMVUTHANA_GROVE, new RandomSpreadStructurePlacement(32, 8, RandomSpreadType.TRIANGULAR, 23311138));
         FROSTMAWS = register(createSetKey("frostmaw_spawns"), CONFIGURED_FROSTMAW, new RandomSpreadStructurePlacement(32, 8, RandomSpreadType.TRIANGULAR, 23317578));
-//        MONASTERIES = register(createSetKey("monasteries"), CONFIGURED_MONASTERY, new RandomSpreadStructurePlacement(32, 8, RandomSpreadType.TRIANGULAR, 25327374));
     }
     
     private static HolderSet<Biome> biomes(TagKey<Biome> p_236537_) {
@@ -96,28 +75,10 @@ public class ConfiguredFeatureHandler {
     }
 
     public static void addBiomeSpawns(Holder<Biome> biomeKey) {
-        if (FERROUS_WROUGHTNAUT_BIOME_CHECKER == null) FERROUS_WROUGHTNAUT_BIOME_CHECKER = new BiomeChecker(ConfigHandler.COMMON.MOBS.FERROUS_WROUGHTNAUT.generationConfig.biomeConfig);
-        if (ConfigHandler.COMMON.MOBS.FERROUS_WROUGHTNAUT.generationConfig.generationDistance.get() >= 0 && FERROUS_WROUGHTNAUT_BIOME_CHECKER.isBiomeInConfig(biomeKey)) {
-            //System.out.println("Added Ferrous Wroughtnaut biome: " + biomeName.toString());
-            FERROUS_WROUGHTNAUT_BIOMES.add(biomeKey);
-        }
-
-        if (UMVUTHI_BIOME_CHECKER == null) UMVUTHI_BIOME_CHECKER = new BiomeChecker(ConfigHandler.COMMON.MOBS.UMVUTHI.generationConfig.biomeConfig);
-        if (ConfigHandler.COMMON.MOBS.UMVUTHI.generationConfig.generationDistance.get() >= 0 && UMVUTHI_BIOME_CHECKER.isBiomeInConfig(biomeKey)) {
-            //System.out.println("Added Barako biome: " + biomeName.toString());
-            UMVUTHI_BIOMES.add(biomeKey);
-        }
-
         if (FROSTMAW_BIOME_CHECKER == null) FROSTMAW_BIOME_CHECKER = new BiomeChecker(ConfigHandler.COMMON.MOBS.FROSTMAW.generationConfig.biomeConfig);
         if (ConfigHandler.COMMON.MOBS.FROSTMAW.generationConfig.generationDistance.get() >= 0 && FROSTMAW_BIOME_CHECKER.isBiomeInConfig(biomeKey)) {
             //System.out.println("Added frostmaw biome: " + biomeName.toString());
             FROSTMAW_BIOMES.add(biomeKey);
         }
-
-        /*if (SCULPTOR_BIOME_CHECKER == null) SCULPTOR_BIOME_CHECKER = new BiomeChecker(ConfigHandler.COMMON.MOBS.SCULPTOR.generationConfig.biomeConfig);
-        if (ConfigHandler.COMMON.MOBS.SCULPTOR.generationConfig.generationDistance.get() >= 0 && BiomeChecker.isBiomeInConfig(ConfigHandler.COMMON.MOBS.SCULPTOR.generationConfig.biomeConfig, biomeKey)) {
-            //System.out.println("Added frostmaw biome: " + biomeName.toString());
-            SCULPTOR_BIOMES.add(biomeKey.get());
-        }*/
     }
 }

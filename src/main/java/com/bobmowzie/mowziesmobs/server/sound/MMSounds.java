@@ -19,35 +19,7 @@ public final class MMSounds {
 
     // Generic
     public static final RegistryObject<SoundEvent> LASER = create("laser");
-    public static final RegistryObject<SoundEvent> SUNSTRIKE = create("sunstrike");
-
-    // Wroughtnaut
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_PRE_SWING_1 = create("wroughtnaut.pre_swing1");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_PRE_SWING_2 = create("wroughtnaut.pre_swing2");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_PRE_SWING_3 = create("wroughtnaut.pre_swing3");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_CREAK = create("wroughtnaut.creak");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_SWING_1 = create("wroughtnaut.swing1");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_SWING_2 = create("wroughtnaut.swing2");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_SWING_3 = create("wroughtnaut.swing3");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_SHOUT_1 = create("wroughtnaut.shout1");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_SHOUT_2 = create("wroughtnaut.shout2");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_SHOUT_3 = create("wroughtnaut.shout3");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_PULL_1 = create("wroughtnaut.pull1");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_PULL_2 = create("wroughtnaut.pull2");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_PULL_5 = create("wroughtnaut.pull5");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_RELEASE_2 = create("wroughtnaut.release2");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_WHOOSH = create("wroughtnaut.whoosh");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_HURT_1 = create("wroughtnaut.hurt1");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_SCREAM = create("wroughtnaut.scream");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_GRUNT_1 = create("wroughtnaut.grunt1");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_GRUNT_2 = create("wroughtnaut.grunt2");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_GRUNT_3 = create("wroughtnaut.grunt3");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_AMBIENT = create("wroughtnaut.ambient");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_STEP = create("wroughtnaut.step");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_UNDAMAGED = create("wroughtnaut.undamaged");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_AXE_LAND = create("wroughtnaut.axe_land");
-    public static final RegistryObject<SoundEvent> ENTITY_WROUGHT_AXE_HIT = create("wroughtnaut.axe_hit");
-
+    
     // Umvuthana
     public static final RegistryObject<SoundEvent> ENTITY_UMVUTHANA_INHALE = create("umvuthana.inhale");
     public static final RegistryObject<SoundEvent> ENTITY_UMVUTHANA_BLOWDART = create("umvuthana.blowdart");
@@ -104,30 +76,6 @@ public final class MMSounds {
 
     public static final RegistryObject<SoundEvent> ENTITY_UMVUTHANA_HEAL_LOOP = create("umvuthana.healloop");
 
-    public static final RegistryObject<SoundEvent> ENTITY_UMVUTHI_BELLY = create("umvuthi.belly");
-    public static final RegistryObject<SoundEvent> ENTITY_UMVUTHI_BURST = create("umvuthi.burst");
-    public static final RegistryObject<SoundEvent> ENTITY_UMVUTHI_ROAR = create("umvuthi.roar");
-    public static final RegistryObject<SoundEvent> ENTITY_SUPERNOVA_START = create("supernova.start");
-    public static final RegistryObject<SoundEvent> ENTITY_SUPERNOVA_BLACKHOLE = create("supernova.blackhole");
-    public static final RegistryObject<SoundEvent> ENTITY_SUPERNOVA_END = create("supernova.end");
-    public static final RegistryObject<SoundEvent> ENTITY_UMVUTHI_ATTACK = create("umvuthi.attack");
-    public static final RegistryObject<SoundEvent> ENTITY_UMVUTHI_HURT = create("umvuthi.hurt");
-    public static final RegistryObject<SoundEvent> ENTITY_UMVUTHI_DIE = create("umvuthi.die");
-    public static final RegistryObject<SoundEvent> ENTITY_UMVUTHI_BLESS = create("umvuthi.bless");
-    public static final RegistryObject<SoundEvent> ENTITY_UMVUTHI_IDLE = create("umvuthi.idle");
-
-    // Foliaath
-    public static final RegistryObject<SoundEvent> ENTITY_FOLIAATH_GRUNT = create("foliaath.grunt");
-    public static final RegistryObject<SoundEvent> ENTITY_FOLIAATH_RUSTLE = create("foliaath.rustle");
-    public static final RegistryObject<SoundEvent> ENTITY_FOLIAATH_MERGE = create("foliaath.emerge");
-    public static final RegistryObject<SoundEvent> ENTITY_FOLIAATH_RETREAT = create("foliaath.retreat");
-    public static final RegistryObject<SoundEvent> ENTITY_FOLIAATH_PANT_1 = create("foliaath.pant1");
-    public static final RegistryObject<SoundEvent> ENTITY_FOLIAATH_PANT_2 = create("foliaath.pant2");
-    public static final RegistryObject<SoundEvent> ENTITY_FOLIAATH_BITE_1 = create("foliaath.bite1");
-    public static final RegistryObject<SoundEvent> ENTITY_FOLIAATH_HURT = create("foliaath.hurt");
-    public static final RegistryObject<SoundEvent> ENTITY_FOLIAATH_DIE = create("foliaath.die");
-    public static final RegistryObject<SoundEvent> ENTITY_FOLIAATH_BABY_EAT = create("foliaath.baby.eat");
-
     public static final RegistryObject<SoundEvent> ENTITY_FROSTMAW_ROAR = create("frostmaw.roar");
     public static final RegistryObject<SoundEvent> ENTITY_FROSTMAW_DIE = create("frostmaw.die");
     public static final RegistryObject<SoundEvent> ENTITY_FROSTMAW_WHOOSH = create("frostmaw.whoosh");
@@ -161,11 +109,6 @@ public final class MMSounds {
             ENTITY_FROSTMAW_LIVING_2::get
     );
     public static final RegistryObject<SoundEvent> ENTITY_FROSTMAW_WAKEUP = create("frostmaw.wakeup");
-
-    public static final RegistryObject<SoundEvent> ENTITY_GROTTOL_STEP = create("grottol.step");
-    public static final RegistryObject<SoundEvent> ENTITY_GROTTOL_UNDAMAGED = create("grottol.undamaged");
-    public static final RegistryObject<SoundEvent> ENTITY_GROTTOL_BURROW = create("grottol.burrow");
-    public static final RegistryObject<SoundEvent> ENTITY_GROTTOL_DIE = create("grottol.die");
 
     public static final RegistryObject<SoundEvent> ENTITY_LANTERN_POP = create("lantern.pop");
     public static final RegistryObject<SoundEvent> ENTITY_LANTERN_PUFF = create("lantern.puff");
@@ -235,7 +178,6 @@ public final class MMSounds {
             EFFECT_GEOMANCY_RUMBLE_3::get
     );
     public static final RegistryObject<SoundEvent> EFFECT_GEOMANCY_HIT_SMALL = create("geomancy.smallrockhit");
-    public static final RegistryObject<SoundEvent> EFFECT_GEOMANCY_BOULDER_CHARGE = create("geomancy.bouldercharge");
     public static final RegistryObject<SoundEvent> EFFECT_GEOMANCY_MAGIC_CHARGE_SMALL = create("geomancy.magicchargesmall");
 
     public static final RegistryObject<SoundEvent> BLOCK_GONG = create("block.gong");
@@ -249,7 +191,6 @@ public final class MMSounds {
     public static final RegistryObject<SoundEvent> MUSIC_BLACK_PINK = create("music.black_pink");
     public static final RegistryObject<SoundEvent> MUSIC_PETIOLE = create("music.petiole");
     public static final RegistryObject<SoundEvent> MUSIC_UMVUTHI_THEME = create("music.umvuthi_theme");
-    public static final RegistryObject<SoundEvent> MUSIC_FERROUS_WROUGHTNAUT_THEME = create("music.ferrous_wroughtnaut_theme");
     public static final RegistryObject<SoundEvent> MUSIC_FROSTMAW_THEME = create("music.frostmaw_theme");
 
     private static RegistryObject<SoundEvent> create(String name) {

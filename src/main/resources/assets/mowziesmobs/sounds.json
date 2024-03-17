@@ -1,176 +1,7 @@
 {
-	"foliaath.bite1": {
-		"sounds": [ "mowziesmobs:entity/foliaath/bite1" ],
-		"subtitle": "subtitles.mowziesmobs.foliaath.bite"
-	},
-	"foliaath.bite2": {
-		"sounds": [ "mowziesmobs:entity/foliaath/bite2" ],
-		"subtitle": "subtitles.mowziesmobs.foliaath.bite"
-	},
-	"foliaath.emerge":{
-		"sounds": [ "mowziesmobs:entity/foliaath/emerge" ],
-		"subtitle": "subtitles.mowziesmobs.foliaath.emerge"
-	},
-	"foliaath.grunt": {
-		"sounds": [ "mowziesmobs:entity/foliaath/grunt" ],
-		"subtitle": "subtitles.mowziesmobs.foliaath.grunt"
-	},
-	"foliaath.pant1": {
-		"sounds": [ "mowziesmobs:entity/foliaath/pant1" ],
-		"subtitle": "subtitles.mowziesmobs.foliaath.pant"
-	},
-	"foliaath.pant2": {
-		"sounds": [ "mowziesmobs:entity/foliaath/pant2" ],
-		"subtitle": "subtitles.mowziesmobs.foliaath.pant"
-	},
-	"foliaath.retreat": {
-		"sounds": [ "mowziesmobs:entity/foliaath/retreat" ],
-		"subtitle": "subtitles.mowziesmobs.foliaath.retreat"
-	},
-	"foliaath.die": {
-		"sounds": [ "mowziesmobs:entity/foliaath/die" ],
-		"subtitle": "subtitles.mowziesmobs.foliaath.die"
-	},
-	"foliaath.hurt": {
-		"sounds": [ "mowziesmobs:entity/foliaath/hurt" ],
-		"subtitle": "subtitles.mowziesmobs.foliaath.hurt"
-	},
-	"foliaath.rustle": {
-		"sounds": [ "mowziesmobs:entity/foliaath/rustle" ],
-		"subtitle": "subtitles.mowziesmobs.foliaath.rustle"
-	},
 	"dirtimpact": {
 		"sounds": [ "mowziesmobs:random/dirt_impact" ],
 		"subtitle": "subtitles.mowziesmobs.ground_hit"
-	},
-	"foliaath.baby.eat": {
-		"sounds": [ "mowziesmobs:entity/foliaath/baby_eat" ],
-		"subtitle": "subtitles.mowziesmobs.foliaath.baby_eat"
-	},
-	"wroughtnaut.whoosh": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/whoosh" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.whoosh"
-	},
-	"wroughtnaut.creak": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/creak" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.creak"
-	},
-	"wroughtnaut.grunt1": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/grunt1" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.grunt"
-	},
-	"wroughtnaut.grunt2": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/grunt2" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.grunt"
-	},
-	"wroughtnaut.grunt3": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/grunt3" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.grunt"
-	},
-	"wroughtnaut.hurt1": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/hurt1" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.hurt"
-	},
-	"wroughtnaut.pre_swing1": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/pre_swing1" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.pre_swing"
-	},
-	"wroughtnaut.pre_swing2": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/pre_swing2" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.pre_swing"
-	},
-	"wroughtnaut.pre_swing3": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/pre_swing3" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.pre_swing"
-	},
-	"wroughtnaut.pull1": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/pull1" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.pull"
-	},
-	"wroughtnaut.pull2": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/pull2" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.pull"
-	},
-	"wroughtnaut.pull3": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/pull3" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.pull"
-	},
-	"wroughtnaut.pull4": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/pull4" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.pull"
-	},
-	"wroughtnaut.pull5": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/pull5" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.pull"
-	},
-	"wroughtnaut.pull6": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/pull6" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.pull"
-	},
-	"wroughtnaut.release1": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/release1" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.release"
-	},
-	"wroughtnaut.release2": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/release2" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.release"
-	},
-	"wroughtnaut.scream": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/scream" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.scream"
-	},
-	"wroughtnaut.shout1": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/shout1" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.shout"
-	},
-	"wroughtnaut.shout2": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/shout2" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.shout"
-	},
-	"wroughtnaut.shout3": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/shout3" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.shout"
-	},
-	"wroughtnaut.ambient": {
-		"sounds": [
-			"mowziesmobs:entity/wroughtnaut/grunt1",
-			"mowziesmobs:entity/wroughtnaut/grunt2",
-			"mowziesmobs:entity/wroughtnaut/shout1",
-			"mowziesmobs:entity/wroughtnaut/shout2"
-		],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.grunt"
-	},
-	"wroughtnaut.swing1": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/swing1" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.swing"
-	},
-	"wroughtnaut.swing2": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/swing2" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.swing"
-	},
-	"wroughtnaut.swing3": {
-		"sounds": [ "mowziesmobs:entity/wroughtnaut/swing3" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.swing"
-	},
-	"wroughtnaut.step": {
-		"sounds": [
-			"minecraft:mob/zombie/metal1",
-			"minecraft:mob/zombie/metal2",
-			"minecraft:mob/zombie/metal3"
-		],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.footstep"
-	},
-	"wroughtnaut.undamaged": {
-		"sounds": [ "minecraft:random/anvil_land" ],
-		"subtitle": "subtitles.mowziesmobs.clink"
-	},
-	"wroughtnaut.axe_land": {
-		"sounds": [ "minecraft:random/anvil_land" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.axe_clang"
-	},
-	"wroughtnaut.axe_hit": {
-		"sounds": [ "minecraft:random/anvil_land" ],
-		"subtitle": "subtitles.mowziesmobs.wroughtnaut.axe_clang"
 	},
 	"umvuthana.die": {
 		"sounds": [
@@ -337,10 +168,6 @@
 		"sounds": [ "mowziesmobs:entity/umvuthi/bless" ],
 		"subtitle": "subtitles.mowziesmobs.umvuthi.bless"
 	},
-	"sunstrike": {
-		"sounds": [ "mowziesmobs:random/sunstrike" ],
-		"subtitle": "subtitles.mowziesmobs.sunstrike"
-	},
 	"laser": {
 		"sounds": [ "mowziesmobs:laser/laser" ],
 		"subtitle": "subtitles.mowziesmobs.laser"
@@ -348,18 +175,6 @@
 	"umvuthi.roar": {
 		"sounds": [ "mowziesmobs:entity/umvuthi/roar" ],
 		"subtitle": "subtitles.mowziesmobs.umvuthi.roar"
-	},
-	"supernova.start": {
-		"sounds": [ "mowziesmobs:entity/umvuthi/supernova_start" ],
-		"subtitle": "subtitles.mowziesmobs.umvuthi.supernova_start"
-	},
-	"supernova.blackhole": {
-		"sounds": [ "mowziesmobs:entity/umvuthi/black_hole" ],
-		"subtitle": "subtitles.mowziesmobs.umvuthi.black_hole"
-	},
-	"supernova.end": {
-		"sounds": [ "mowziesmobs:entity/umvuthi/supernova_end" ],
-		"subtitle": "subtitles.mowziesmobs.umvuthi.supernova_end"
 	},
 	"geomancy.smallcrash": {
 		"sounds": [ "mowziesmobs:effects/geomancy/small_rock_crash" ],
@@ -517,32 +332,6 @@
 		"sounds": [ "mowziesmobs:entity/frostmaw/icecrash" ],
 		"subtitle": "subtitles.mowziesmobs.ice.crash"
 	},
-	"grottol.step": {
-		"sounds": [
-			"mowziesmobs:entity/grottol/step1",
-			"mowziesmobs:entity/grottol/step2",
-			"mowziesmobs:entity/grottol/step3",
-			"mowziesmobs:entity/grottol/step4"
-		],
-		"subtitle": "subtitles.mowziesmobs.grottol.step"
-	},
-	"grottol.undamaged": {
-		"sounds": [ "minecraft:random/anvil_land" ],
-		"subtitle": "subtitles.mowziesmobs.clink"
-	},
-	"grottol.burrow": {
-		"sounds": [
-			"minecraft:dig/sand1",
-			"minecraft:dig/sand2",
-			"minecraft:dig/sand3",
-			"minecraft:dig/sand4"
-		],
-		"subtitle": "subtitles.mowziesmobs.grottol.dig"
-	},
-	"grottol.die": {
-		"sounds": [ "mowziesmobs:effects/geomancy/rock_break" ],
-		"subtitle": "subtitles.mowziesmobs.grottol.die"
-	},
 	"lantern.pop": {
 		"sounds": [ "mowziesmobs:entity/lantern/pop" ],
 		"subtitle": "subtitles.mowziesmobs.lantern.pop"
@@ -659,17 +448,6 @@
 			}
 		],
 		"subtitle": "subtitles.mowziesmobs.umvuthi_theme"
-	},
-	"music.ferrous_wroughtnaut_theme": {
-		"category": "music",
-		"sounds": [
-			{
-				"name": "mowziesmobs:music/ferrous_wroughtnaut",
-				"stream": true,
-				"volume": 0.5
-			}
-		],
-		"subtitle": "subtitles.mowziesmobs.ferrous_wroughtnaut_theme"
 	},
 	"music.frostmaw_theme": {
 		"category": "music",

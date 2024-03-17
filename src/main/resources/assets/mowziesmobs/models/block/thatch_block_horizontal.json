@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "end": "mowziesmobs:block/thatch_block_top",
-    "side": "mowziesmobs:block/thatch_block_side"
-  }
-}

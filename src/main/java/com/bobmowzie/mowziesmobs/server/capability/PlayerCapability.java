@@ -12,8 +12,6 @@ import com.bobmowzie.mowziesmobs.server.ability.Ability;
 import com.bobmowzie.mowziesmobs.server.ability.AbilityHandler;
 import com.bobmowzie.mowziesmobs.server.ability.PlayerAbility;
 import com.bobmowzie.mowziesmobs.server.config.ConfigHandler;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.EntityUmvuthanaFollowerToPlayer;
-import com.bobmowzie.mowziesmobs.server.item.ItemEarthTalisman;
 import com.bobmowzie.mowziesmobs.server.item.ItemHandler;
 import com.bobmowzie.mowziesmobs.server.message.mouse.MessageLeftMouseDown;
 import com.bobmowzie.mowziesmobs.server.message.mouse.MessageLeftMouseUp;
@@ -54,22 +52,6 @@ public class PlayerCapability {
 
         void addedToWorld(EntityJoinLevelEvent event);
 
-        boolean isVerticalSwing();
-
-        void setVerticalSwing(boolean verticalSwing);
-
-        int getUntilSunstrike();
-
-        void setUntilSunstrike(int untilSunstrike);
-
-        int getUntilAxeSwing();
-
-        void setUntilAxeSwing(int untilAxeSwing);
-
-        void setAxeCanAttack(boolean axeCanAttack);
-
-        boolean getAxeCanAttack();
-
         boolean isMouseRightDown();
 
         void setMouseRightDown(boolean mouseRightDown);
@@ -82,29 +64,7 @@ public class PlayerCapability {
 
         void setPrevSneaking(boolean prevSneaking);
 
-        int getTribeCircleTick();
-
-        void setTribeCircleTick(int tribeCircleTick);
-
-        List<EntityUmvuthanaFollowerToPlayer> getTribePack();
-
-        void setTribePack(List<EntityUmvuthanaFollowerToPlayer> tribePack);
-
-        int getTribePackRadius();
-
-        void setTribePackRadius(int tribePackRadius);
-
-        int getPackSize();
-
         Vec3 getPrevMotion();
-
-        void removePackMember(EntityUmvuthanaFollowerToPlayer tribePlayer);
-
-        void addPackMember(EntityUmvuthanaFollowerToPlayer tribePlayer);
-
-        void setUsingSolarBeam(boolean b);
-
-        boolean getUsingSolarBeam();
 
         float getPrevCooledAttackStrength();
 
@@ -115,9 +75,6 @@ public class PlayerCapability {
     }
 
     public static class PlayerCapabilityImp implements IPlayerCapability {
-        public boolean verticalSwing = false;
-        public int untilSunstrike = 0;
-        public int untilAxeSwing = 0;
         private int prevTime;
         private int time;
         public boolean mouseRightDown = false;
@@ -125,44 +82,8 @@ public class PlayerCapability {
         public boolean prevSneaking;
         private float prevCooledAttackStrength;
 
-        public int tribeCircleTick;
-        public List<EntityUmvuthanaFollowerToPlayer> tribePack = new ArrayList<>();
-        public int tribePackRadius = 3;
-
         @OnlyIn(Dist.CLIENT)
         private GeckoPlayer.GeckoPlayerThirdPerson geckoPlayer;
-
-        public boolean isVerticalSwing() {
-            return verticalSwing;
-        }
-
-        public void setVerticalSwing(boolean verticalSwing) {
-            this.verticalSwing = verticalSwing;
-        }
-
-        public int getUntilSunstrike() {
-            return untilSunstrike;
-        }
-
-        public void setUntilSunstrike(int untilSunstrike) {
-            this.untilSunstrike = untilSunstrike;
-        }
-
-        public int getUntilAxeSwing() {
-            return untilAxeSwing;
-        }
-
-        public void setUntilAxeSwing(int untilAxeSwing) {
-            this.untilAxeSwing = untilAxeSwing;
-        }
-
-        public void setAxeCanAttack(boolean axeCanAttack) {
-            this.axeCanAttack = axeCanAttack;
-        }
-
-        public boolean getAxeCanAttack() {
-            return axeCanAttack;
-        }
 
         public boolean isMouseRightDown() {
             return mouseRightDown;
@@ -188,37 +109,9 @@ public class PlayerCapability {
             this.prevSneaking = prevSneaking;
         }
 
-        public int getTribeCircleTick() {
-            return tribeCircleTick;
-        }
-
-        public void setTribeCircleTick(int tribeCircleTick) {
-            this.tribeCircleTick = tribeCircleTick;
-        }
-
-        public List<EntityUmvuthanaFollowerToPlayer> getTribePack() {
-            return tribePack;
-        }
-
-        public void setTribePack(List<EntityUmvuthanaFollowerToPlayer> tribePack) {
-            this.tribePack = tribePack;
-        }
-
-        public int getTribePackRadius() {
-            return tribePackRadius;
-        }
-
-        public void setTribePackRadius(int tribePackRadius) {
-            this.tribePackRadius = tribePackRadius;
-        }
-
         public Vec3 getPrevMotion() {
             return prevMotion;
         }
-
-        public void setUsingSolarBeam(boolean b) { this.usingSolarBeam = b; }
-
-        public boolean getUsingSolarBeam() { return this.usingSolarBeam; }
 
         @Override
         public float getPrevCooledAttackStrength() {
@@ -235,10 +128,6 @@ public class PlayerCapability {
             return geckoPlayer;
         }
 
-        private boolean usingSolarBeam;
-
-        public boolean axeCanAttack;
-
         public Vec3 prevMotion;
 
         public Power[] powers = new Power[]{};
@@ -254,43 +143,9 @@ public class PlayerCapability {
 
         public void tick(TickEvent.PlayerTickEvent event) {
             Player player = event.player;
-            
-            tribeCircleTick++;
 
             prevMotion = player.position().subtract(new Vec3(player.xo, player.yo, player.zo));
             prevTime = time;
-            if (untilSunstrike > 0) {
-                untilSunstrike--;
-            }
-            if (untilAxeSwing > 0) {
-                untilAxeSwing--;
-            }
-
-            if (event.side == LogicalSide.SERVER) {
-                for (ItemStack itemStack : event.player.getInventory().items) {
-                    if (itemStack.getItem() instanceof ItemEarthTalisman)
-                        player.addEffect(new MobEffectInstance(EffectHandler.GEOMANCY.get(), 20, 0, false, false));
-                }
-                if (player.getOffhandItem().getItem() instanceof ItemEarthTalisman)
-                    player.addEffect(new MobEffectInstance(EffectHandler.GEOMANCY.get(), 20, 0, false, false));
-
-                List<EntityUmvuthanaFollowerToPlayer> pack = tribePack;
-                float theta = (2 * (float) Math.PI / pack.size());
-                for (int i = 0; i < pack.size(); i++) {
-                    EntityUmvuthanaFollowerToPlayer barakoan = pack.get(i);
-                    barakoan.index = i;
-                    float distanceToPlayer = player.distanceTo(barakoan);
-                    if (barakoan.getTarget() == null && barakoan.getActiveAbility() == null) {
-                        if (distanceToPlayer > 4)
-                            barakoan.getNavigation().moveTo(player.getX() + tribePackRadius * Mth.cos(theta * i), player.getY(), player.getZ() + tribePackRadius * Mth.sin(theta * i), 0.45);
-                        else
-                            barakoan.getNavigation().stop();
-                        if (distanceToPlayer > 20 && player.isOnGround()) {
-                            tryTeleportBarakoan(player, barakoan);
-                        }
-                    }
-                }
-            }
 
             Ability iceBreathAbility = AbilityHandler.INSTANCE.getAbility(player, AbilityHandler.ICE_BREATH_ABILITY);
             if (iceBreathAbility != null && !iceBreathAbility.isUsing()) {
@@ -423,40 +278,12 @@ public class PlayerCapability {
             }
         }
 
-        private void tryTeleportBarakoan(Player player, EntityUmvuthanaFollowerToPlayer barakoan) {
-            int x = Mth.floor(player.getX()) - 2;
-            int z = Mth.floor(player.getZ()) - 2;
-            int y = Mth.floor(player.getBoundingBox().minY);
-
-            for (int l = 0; l <= 4; ++l) {
-                for (int i1 = 0; i1 <= 4; ++i1) {
-                    if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && barakoan.isTeleportFriendlyBlock(x, z, y, l, i1)) {
-                        barakoan.moveTo((float) (x + l) + 0.5F, y, (float) (z + i1) + 0.5F, barakoan.getYRot(), barakoan.getXRot());
-                        barakoan.getNavigation().stop();
-                        return;
-                    }
-                }
-            }
-        }
-
         public int getTick() {
             return time;
         }
 
         public void decrementTime() {
             time--;
-        }
-
-        public int getPackSize() {
-            return tribePack.size();
-        }
-
-        public void removePackMember(EntityUmvuthanaFollowerToPlayer tribePlayer) {
-            tribePack.remove(tribePlayer);
-        }
-
-        public void addPackMember(EntityUmvuthanaFollowerToPlayer tribePlayer) {
-            tribePack.add(tribePlayer);
         }
 
         public Power[] getPowers() {
@@ -466,8 +293,6 @@ public class PlayerCapability {
         @Override
         public CompoundTag serializeNBT() {
             CompoundTag compound = new CompoundTag();
-            compound.putInt("untilSunstrike", untilSunstrike);
-            compound.putInt("untilAxeSwing", untilAxeSwing);
             compound.putInt("prevTime", prevTime);
             compound.putInt("time", time);
             return compound;
@@ -475,8 +300,6 @@ public class PlayerCapability {
 
         @Override
         public void deserializeNBT(CompoundTag compound) {
-            untilSunstrike = compound.getInt("untilSunstrike");
-            untilAxeSwing = compound.getInt("untilAxeSwing");
             prevTime = compound.getInt("prevTime");
             time = compound.getInt("time");
         }

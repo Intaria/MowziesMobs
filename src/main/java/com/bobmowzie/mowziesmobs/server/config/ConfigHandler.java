@@ -249,54 +249,11 @@ public final class ConfigHandler {
         public final DoubleValue toughness;
     }
 
-    // Mob configuration
-    public static class Foliaath {
-        Foliaath(final ForgeConfigSpec.Builder builder) {
-            builder.push("foliaath");
-            spawnConfig = new SpawnConfig(builder,
-                    70, 1, 4, 1,
-                    new BiomeConfig(builder, Collections.singletonList("minecraft:is_jungle"), Collections.emptyList(), Collections.emptyList()),
-                    Collections.emptyList(),
-                    Arrays.asList("minecraft:valid_spawn", "minecraft:leaves", "minecraft:logs"),
-                    -65, 60, true, false, false,
-                    Arrays.asList("minecraft:villages", "minecraft:pillager_outposts")
-
-            );
-            combatConfig = new CombatConfig(builder, 1, 1);
-            builder.pop();
-        }
-
-        public final SpawnConfig spawnConfig;
-
-        public final CombatConfig combatConfig;
-    }
-
-    public static class Umvuthana {
-        Umvuthana(final ForgeConfigSpec.Builder builder) {
-            builder.push("umvuthana");
-            builder.comment("Controls spawning for Umvuthana hunting groups", "Group size controls how many raptors spawn, not followers", "See Umvuthi config for grove structure controls");
-            spawnConfig = new SpawnConfig(builder,
-                    5, 1, 1, 1,
-                    new BiomeConfig(builder, Collections.singletonList("minecraft:is_savanna"), Collections.emptyList(), Collections.emptyList()),
-                    Collections.emptyList(),
-                    Arrays.asList("minecraft:valid_spawn", "minecraft:sand"),
-                    -65, 60, false, false, false,
-                    Arrays.asList("minecraft:villages", "minecraft:pillager_outposts", "mowziesmobs:umvuthana_groves")
-            );
-            combatConfig = new CombatConfig(builder,1, 1);
-            builder.pop();
-        }
-
-        public final SpawnConfig spawnConfig;
-
-        public final CombatConfig combatConfig;
-    }
-
     public static class Naga {
         Naga(final ForgeConfigSpec.Builder builder) {
             builder.push("naga");
             spawnConfig = new SpawnConfig(builder,
-                    15, 2, 4, 1,
+                    55, 2, 4, 1,
                     new BiomeConfig(builder, Arrays.asList("minecraft:is_beach,minecraft:is_mountain", "minecraft:is_beach,minecraft:is_hill"), Collections.singletonList("minecraft:stony_shore"), Collections.emptyList()),
                     Collections.emptyList(),
                     Collections.emptyList(),
@@ -332,104 +289,10 @@ public final class ConfigHandler {
         public final CombatConfig combatConfig;
     }
 
-    public static class Grottol {
-        Grottol(final ForgeConfigSpec.Builder builder) {
-            builder.push("grottol");
-            this.spawnConfig = new SpawnConfig(builder,
-                    2, 1, 1, 1,
-                    new BiomeConfig(builder,  Collections.singletonList("!forge:is_mushroom"), Collections.emptyList(), Collections.emptyList()),
-                    Collections.emptyList(),
-                    Collections.singletonList("minecraft:base_stone_overworld"),
-                    16, -65, true, false, true,
-                    Collections.emptyList()
-            );
-            combatConfig = new CombatConfig(builder, 1, 1);
-            builder.pop();
-        }
-
-        public final SpawnConfig spawnConfig;
-
-        public final CombatConfig combatConfig;
-    }
-
-    public static class FerrousWroughtnaut {
-        FerrousWroughtnaut(final ForgeConfigSpec.Builder builder) {
-            builder.push("ferrous_wroughtnaut");
-            generationConfig = new GenerationConfig(builder, 15, 5,
-                    new BiomeConfig(builder, Collections.singletonList("!minecraft:is_ocean"), Collections.emptyList(), Collections.emptyList()),
-                    20, 50,
-                    Collections.emptyList()
-            );
-            combatConfig = new CombatConfig(builder, 1, 1);
-            this.hasBossBar = builder.comment("Disable/enable Ferrous Wroughtnaut's boss health bar")
-                    .translation(LANG_PREFIX + "has_boss_bar")
-                    .define("has_boss_bar", true);
-            this.healsOutOfBattle = builder.comment("Disable/enable Ferrous Wroughtnaut healing while not active")
-                    .translation(LANG_PREFIX + "heals_out_of_battle")
-                    .define("heals_out_of_battle", true);
-            this.resetHealthWhenRespawn = builder.comment("Disable/enable Ferrous Wroughtnaut resetting health when a player respawns nearby. (Prevents respawn cheese!)")
-                    .translation(LANG_PREFIX + "reset_health_when_respawn")
-                    .define("reset_health_when_respawn", true);
-            builder.pop();
-        }
-
-        public final GenerationConfig generationConfig;
-
-        public final CombatConfig combatConfig;
-        public final BooleanValue hasBossBar;
-
-        public final BooleanValue healsOutOfBattle;
-
-        public final BooleanValue resetHealthWhenRespawn;
-    }
-
-    public static class Umvuthi {
-        Umvuthi(final ForgeConfigSpec.Builder builder) {
-            builder.push("umvuthi");
-            builder.comment("Generation controls for Umvuthana Groves");
-            generationConfig = new GenerationConfig(builder, 25, 8,
-                    new BiomeConfig(builder, Collections.singletonList("minecraft:is_savanna"), Collections.emptyList(), Collections.emptyList()),
-                    50, 100,
-                    Arrays.asList("minecraft:villages", "minecraft:pillager_outposts")
-            );
-            combatConfig = new CombatConfig(builder, 1, 1);
-            this.hasBossBar = builder.comment("Disable/enable Umvuthi's boss health bar")
-                    .translation(LANG_PREFIX + "has_boss_bar")
-                    .define("has_boss_bar", true);
-            this.healsOutOfBattle = builder.comment("Disable/enable Umvuthi healing while not in combat")
-                    .translation(LANG_PREFIX + "heals_out_of_battle")
-                    .define("heals_out_of_battle", true);
-            this.whichItem = builder.comment("Which item Umvuthi desires in exchange for the Sun's Blessing")
-                    .translation(LANG_PREFIX + "trade_which_item")
-                    .define("trade_which_item", "minecraft:gold_block", ITEM_NAME_PREDICATE);
-            this.howMany = builder.comment("How many of the item Umvuthi desires in exchange for the Sun's Blessing")
-                    .translation(LANG_PREFIX + "trade_how_many")
-                    .defineInRange("trade_how_many", 7, 0, 64);
-            this.resetHealthWhenRespawn = builder.comment("Disable/enable Umvuthi resetting health when a player respawns nearby. (Prevents respawn cheese!)")
-                    .translation(LANG_PREFIX + "reset_health_when_respawn")
-                    .define("reset_health_when_respawn", true);
-            builder.pop();
-        }
-
-        public final GenerationConfig generationConfig;
-
-        public final CombatConfig combatConfig;
-
-        public final BooleanValue hasBossBar;
-
-        public final BooleanValue healsOutOfBattle;
-
-        public final ConfigValue<? extends String> whichItem;
-
-        public final IntValue howMany;
-
-        public final BooleanValue resetHealthWhenRespawn;
-    }
-
     public static class Frostmaw {
         Frostmaw(final ForgeConfigSpec.Builder builder) {
             builder.push("frostmaw");
-            generationConfig = new GenerationConfig(builder, 25, 8,
+            generationConfig = new GenerationConfig(builder, 35, 16,
                     new BiomeConfig(builder, Collections.singletonList("forge:is_snowy,!minecraft:is_ocean,!minecraft:is_river,!minecraft:is_beach,!minecraft:is_forest,!minecraft:is_taiga"), Collections.emptyList(), Collections.emptyList()),
                     50, 100,
                     Arrays.asList("minecraft:villages", "minecraft:pillager_outposts")
@@ -463,73 +326,6 @@ public final class ConfigHandler {
         public final BooleanValue resetHealthWhenRespawn;
     }
 
-    public static class Sculptor {
-        Sculptor(final ForgeConfigSpec.Builder builder) {
-            builder.push("sculptor");
-            generationConfig = new GenerationConfig(builder, 25, 8,
-                    new BiomeConfig(builder, Collections.singletonList("minecraft:is_mountain"), Collections.emptyList(), Collections.emptyList()),
-                    120, 200,
-                    Collections.emptyList()
-            );
-            combatConfig = new CombatConfig(builder, 1, 1);
-            this.healsOutOfBattle = builder.comment("Disable/enable the Sculptor healing while not in combat")
-                    .translation(LANG_PREFIX + "heals_out_of_battle")
-                    .define("heals_out_of_battle", true);
-            builder.pop();
-        }
-
-        public final GenerationConfig generationConfig;
-
-        public final CombatConfig combatConfig;
-
-        public final BooleanValue healsOutOfBattle;
-    }
-
-    public static class WroughtHelm {
-        WroughtHelm(final ForgeConfigSpec.Builder builder) {
-            builder.push("wrought_helm");
-            armorConfig = new ArmorConfig(builder, ArmorMaterials.IRON.getDefenseForSlot(EquipmentSlot.HEAD), ArmorMaterials.IRON.getToughness());
-            breakable = builder.comment("Set to true for the Wrought Helm to have limited durability.")
-                    .translation(LANG_PREFIX + "breakable")
-                    .define("breakable", false);
-            builder.pop();
-        }
-
-        public final ArmorConfig armorConfig;
-
-        public final BooleanValue breakable;
-    }
-
-    public static class AxeOfAThousandMetals {
-        AxeOfAThousandMetals(final ForgeConfigSpec.Builder builder) {
-            builder.push("axe_of_a_thousand_metals");
-            toolConfig = new ToolConfig(builder, 9, 0.9f);
-            breakable = builder.comment("Set to true for the Axe of a Thousand Metals to have limited durability.")
-                    .translation(LANG_PREFIX + "breakable")
-                    .define("breakable", false);
-            builder.pop();
-        }
-
-        public final ToolConfig toolConfig;
-
-        public final BooleanValue breakable;
-    }
-
-    public static class SolVisage {
-        SolVisage(final ForgeConfigSpec.Builder builder) {
-            builder.push("sol_visage");
-            armorConfig = new ArmorConfig(builder, ArmorMaterials.GOLD.getDefenseForSlot(EquipmentSlot.HEAD), ArmorMaterials.GOLD.getToughness());
-            breakable = builder.comment("Set to true for the Sol Visage to have limited durability.")
-                    .translation(LANG_PREFIX + "breakable")
-                    .define("breakable", false);
-            builder.pop();
-        }
-
-        public final ArmorConfig armorConfig;
-
-        public final BooleanValue breakable;
-    }
-
     public static class UmvuthanaMask {
         UmvuthanaMask(final ForgeConfigSpec.Builder builder) {
             builder.push("umvuthana_mask");
@@ -561,42 +357,6 @@ public final class ConfigHandler {
 
         public final IntValue durability;
         public int durabilityValue;
-    }
-
-    public static class EarthboreGauntlet {
-        EarthboreGauntlet(final ForgeConfigSpec.Builder builder) {
-            builder.push("earthbore_gauntlet");
-            attackMultiplier = builder.comment("Multiply all damage done with the Earthbore Gauntlet by this amount.")
-                    .translation(LANG_PREFIX + "attack_multiplier")
-                    .defineInRange("attack_multiplier", 1f, 0d, Double.MAX_VALUE);
-            breakable = builder.comment("Set to true for the Earthbore Gauntlet to have limited durability.", "Prevents regeneration in inventory.")
-                    .translation(LANG_PREFIX + "breakable")
-                    .define("breakable", false);
-            durability = builder.comment("Earthbore Gauntlet durability")
-                    .translation(LANG_PREFIX + "durability")
-                    .defineInRange("durability", 400, 1, Integer.MAX_VALUE);
-            toolConfig = new ToolConfig(builder, 6, 1.2f);
-            builder.pop();
-        }
-
-        public final DoubleValue attackMultiplier;
-
-        public final BooleanValue breakable;
-
-        public final IntValue durability;
-        public int durabilityValue;
-
-        public final ToolConfig toolConfig;
-    }
-
-    public static class Spear {
-        Spear(final ForgeConfigSpec.Builder builder) {
-            builder.push("spear");
-            toolConfig = new ToolConfig(builder, 5, 1.6f);
-            builder.pop();
-        }
-
-        public final ToolConfig toolConfig;
     }
 
     public static class NagaFangDagger {
@@ -636,65 +396,21 @@ public final class ConfigHandler {
         public final IntValue poisonDuration;
     }
 
-    public static class SunsBlessing {
-        SunsBlessing(final ForgeConfigSpec.Builder builder) {
-            builder.push("suns_blessing");
-            effectDuration = builder.comment("Duration in minutes of the Sun's Blessing effect.")
-                    .translation(LANG_PREFIX + "suns_blessing_duration")
-                    .defineInRange("suns_blessing_duration", 60, 0, Integer.MAX_VALUE);
-            sunsBlessingAttackMultiplier = builder.translation(LANG_PREFIX + "suns_blessing_attack_multiplier")
-                    .defineInRange("suns_blessing_attack_multiplier", 1f, 0, Double.MAX_VALUE);
-            solarBeamCost = builder.comment("Cost in minutes of using the solar beam ability.")
-                    .translation(LANG_PREFIX + "solar_beam_cost")
-                    .defineInRange("solar_beam_cost", 5, 0, Integer.MAX_VALUE);
-            builder.pop();
-            
-            supernovaCost = builder.comment("Cost in minutes of using the supernova ability.")
-                    .translation(LANG_PREFIX + "supernova_cost")
-                    .defineInRange("supernova_cost", 60, 0, Integer.MAX_VALUE);
-        }
-
-        public final DoubleValue sunsBlessingAttackMultiplier;
-
-        public final IntValue effectDuration;
-
-        public final IntValue solarBeamCost;
-
-        public final IntValue supernovaCost;
-    }
-
     public static class Mobs {
         Mobs(final ForgeConfigSpec.Builder builder) {
             builder.push("mobs");
             FROSTMAW = new Frostmaw(builder);
-            UMVUTHI = new Umvuthi(builder);
-            FERROUS_WROUGHTNAUT = new FerrousWroughtnaut(builder);
-            SCULPTOR = new Sculptor(builder);
-            GROTTOL = new Grottol(builder);
             LANTERN = new Lantern(builder);
-            UMVUTHANA = new Umvuthana(builder);
             NAGA = new Naga(builder);
-            FOLIAATH = new Foliaath(builder);
             builder.pop();
         }
 
         public final Frostmaw FROSTMAW;
 
-        public final Umvuthi UMVUTHI;
-
-        public final FerrousWroughtnaut FERROUS_WROUGHTNAUT;
-
-        public final Sculptor SCULPTOR;
-
-        public final Grottol GROTTOL;
-
         public final Lantern LANTERN;
-
-        public final Umvuthana UMVUTHANA;
 
         public final Naga NAGA;
 
-        public final Foliaath FOLIAATH;
     }
 
     public static class ToolsAndAbilities {
@@ -702,40 +418,22 @@ public final class ConfigHandler {
             builder.push("tools_and_abilities");
             geomancyAttackMultiplier = builder.translation(LANG_PREFIX + "geomancy_attack_multiplier")
                     .defineInRange("geomancy_attack_multiplier", 1f, 0, Double.MAX_VALUE);
-            SUNS_BLESSING = new SunsBlessing(builder);
-            WROUGHT_HELM = new WroughtHelm(builder);
-            AXE_OF_A_THOUSAND_METALS = new AxeOfAThousandMetals(builder);
-            SOL_VISAGE = new SolVisage(builder);
             ICE_CRYSTAL = new IceCrystal(builder);
             UMVUTHANA_MASK = new UmvuthanaMask(builder);
-            SPEAR = new Spear(builder);
             NAGA_FANG_DAGGER = new NagaFangDagger(builder);
             BLOW_GUN = new Blowgun(builder);
-            EARTHBORE_GAUNTLET = new EarthboreGauntlet(builder);
             builder.pop();
         }
 
         public final DoubleValue geomancyAttackMultiplier;
 
-        public final SunsBlessing SUNS_BLESSING;
-
-        public final WroughtHelm WROUGHT_HELM;
-
-        public final AxeOfAThousandMetals AXE_OF_A_THOUSAND_METALS;
-
-        public final SolVisage SOL_VISAGE;
-
         public final IceCrystal ICE_CRYSTAL;
 
         public final UmvuthanaMask UMVUTHANA_MASK;
 
-        public final Spear SPEAR;
-
         public final NagaFangDagger NAGA_FANG_DAGGER;
 
         public final Blowgun BLOW_GUN;
-
-        public final EarthboreGauntlet EARTHBORE_GAUNTLET;
     }
 
     public static class Client {

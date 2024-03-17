@@ -13,13 +13,9 @@ import com.bobmowzie.mowziesmobs.client.render.entity.FrozenRenderHandler;
 import com.bobmowzie.mowziesmobs.client.sound.BlackPinkSound;
 import com.bobmowzie.mowziesmobs.client.sound.IceBreathSound;
 import com.bobmowzie.mowziesmobs.client.sound.NagaSwoopSound;
-import com.bobmowzie.mowziesmobs.client.sound.SpawnBoulderChargeSound;
-import com.bobmowzie.mowziesmobs.client.sound.SunblockSound;
-import com.bobmowzie.mowziesmobs.client.sound.SunstrikeSound;
 import com.bobmowzie.mowziesmobs.server.ServerProxy;
 import com.bobmowzie.mowziesmobs.server.ability.AbilityClientEventHandler;
 import com.bobmowzie.mowziesmobs.server.config.ConfigHandler;
-import com.bobmowzie.mowziesmobs.server.entity.effects.EntitySunstrike;
 import com.bobmowzie.mowziesmobs.server.entity.naga.EntityNaga;
 import com.bobmowzie.mowziesmobs.server.item.ItemHandler;
 
@@ -47,7 +43,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientProxy extends ServerProxy {
-    private static final List<SunblockSound> sunblockSounds = new ArrayList<>();
     public static final Map<UUID, ResourceLocation> bossBarRegistryNames = new HashMap<>();
 
     private Entity referencedMob = null;
@@ -73,18 +68,8 @@ public class ClientProxy extends ServerProxy {
     }
 
     @Override
-    public void playSunstrikeSound(EntitySunstrike strike) {
-        Minecraft.getInstance().getSoundManager().play(new SunstrikeSound(strike));
-    }
-
-    @Override
     public void playIceBreathSound(Entity entity) {
         Minecraft.getInstance().getSoundManager().play(new IceBreathSound(entity));
-    }
-
-    @Override
-    public void playBoulderChargeSound(LivingEntity player) {
-        Minecraft.getInstance().getSoundManager().play(new SpawnBoulderChargeSound(player));
     }
 
     @Override
@@ -95,21 +80,6 @@ public class ClientProxy extends ServerProxy {
     @Override
     public void playBlackPinkSound(AbstractMinecart entity) {
         Minecraft.getInstance().getSoundManager().play(new BlackPinkSound(entity));
-    }
-
-    @Override
-    public void playSunblockSound(LivingEntity entity) {
-        sunblockSounds.removeIf(AbstractTickableSoundInstance::isStopped);
-        if (sunblockSounds.size() < 10) {
-            SunblockSound sunblockSound = new SunblockSound(entity);
-            sunblockSounds.add(sunblockSound);
-            try {
-                Minecraft.getInstance().getSoundManager().play(sunblockSound);
-            }
-            catch (ConcurrentModificationException ignored) {
-
-            }
-        }
     }
 
     @Override

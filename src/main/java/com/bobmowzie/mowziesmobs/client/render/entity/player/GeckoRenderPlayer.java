@@ -14,7 +14,6 @@ import com.bobmowzie.mowziesmobs.client.render.entity.layer.GeckoElytraLayer;
 import com.bobmowzie.mowziesmobs.client.render.entity.layer.GeckoParrotOnShoulderLayer;
 import com.bobmowzie.mowziesmobs.client.render.entity.layer.GeckoPlayerItemInHandLayer;
 import com.bobmowzie.mowziesmobs.client.render.entity.layer.IGeckoRenderLayer;
-import com.bobmowzie.mowziesmobs.client.render.entity.layer.SolarFlareLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix3f;
@@ -93,7 +92,6 @@ public class GeckoRenderPlayer extends PlayerRenderer implements IGeoRenderer<Ge
         this.addLayer(new SpinAttackEffectLayer<>(this, context.getModelSet()));
         this.addLayer(new BeeStingerLayer<>(this));
         this.addLayer(new FrozenRenderHandler.LayerFrozen<>(this));
-        this.addLayer(new SolarFlareLayer(this));
 
 
         this.modelProvider = modelProvider;

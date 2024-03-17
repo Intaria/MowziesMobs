@@ -21,10 +21,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class CustomBossBar {
     public static Map<ResourceLocation, CustomBossBar> customBossBars = new HashMap<>();
     static {
-        customBossBars.put(ForgeRegistries.ENTITY_TYPES.getKey(EntityHandler.UMVUTHI.get()), new CustomBossBar(
-                new ResourceLocation(MowziesMobs.MODID, "textures/gui/boss_bar/umvuthi_bar_base.png"),
-                new ResourceLocation(MowziesMobs.MODID, "textures/gui/boss_bar/umvuthi_bar_overlay.png"),
-                4, 8, 2, -12, -6, 256, 16, 21, ChatFormatting.GOLD));
         customBossBars.put(ForgeRegistries.ENTITY_TYPES.getKey(EntityHandler.FROSTMAW.get()), new CustomBossBar(
                 new ResourceLocation(MowziesMobs.MODID, "textures/gui/boss_bar/frostmaw_bar_base.png"),
                 new ResourceLocation(MowziesMobs.MODID, "textures/gui/boss_bar/frostmaw_bar_overlay.png"),

@@ -1,8 +1,6 @@
 package com.bobmowzie.mowziesmobs.server.entity;
 
 import com.bobmowzie.mowziesmobs.server.config.ConfigHandler;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.EntityUmvuthana;
-import com.bobmowzie.mowziesmobs.server.entity.umvuthana.EntityUmvuthanaFollowerToPlayer;
 import com.bobmowzie.mowziesmobs.server.item.ItemHandler;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -62,12 +60,9 @@ public class EntityDart extends Arrow {
             Entity hit = raytraceResultIn.getEntity();
             Entity shooter = getOwner();
             if (hit instanceof LivingEntity) {
-                LivingEntity living = (LivingEntity) hit;
                 if (
                         level.isClientSide ||
-                        (shooter == hit) ||
-                        (shooter instanceof EntityUmvuthana && living instanceof EntityUmvuthana && ((EntityUmvuthana) shooter).isUmvuthiDevoted() == ((EntityUmvuthana) living).isUmvuthiDevoted()) ||
-                        (shooter instanceof EntityUmvuthanaFollowerToPlayer && living == ((EntityUmvuthanaFollowerToPlayer) shooter).getLeader())
+                        (shooter == hit)
                 )
                     return;
             }
